@@ -23,6 +23,30 @@ def post_detail(request, slug):
     **Template:**
 
     :template:`blog/post_detail.html`
+
+    **Template context processors:**
+    - :func:`django.contrib.auth.context_processors.auth`
+    - :func:`django.template.context_processors.debug`
+    - :func:`django.template.context_processors.i18n`
+    - :func:`django.template.context_processors.media`
+    - :func:`django.template.context_processors.static`
+    - :func:`django.template.context_processors.tz`
+    **Template tags:**
+    - :template:`blog/post_detail.html`
+    **Template filters:**
+    - :filter:`date`
+    - :filter:`time`
+    **Template variables:**
+    - ``post``
+        An instance of :model:`blog.Post`.
+    - ``comments``
+        A queryset of comments related to the post, ordered by creation date.
+    - ``comment_count``
+        The total number of approved comments for the post.
+    - ``comment_form``
+        An instance of :class:`blog.forms.CommentForm` for submitting new comments.
+    **Example usage:**
+    To display a post with its comments and a form to submit new comments, use the following in your template:  
     """
 
     queryset = Post.objects.filter(status=1)
@@ -59,6 +83,12 @@ def post_detail(request, slug):
 def comment_edit(request, slug, comment_id):
     """
     view to edit comments
+    :param request: The HTTP request object.
+    :param slug: The slug of the post to which the comment belongs.
+    :param comment_id: The ID of the comment to be edited.
+    :return: Redirects to the post detail page after editing the comment.
+    :rtype: HttpResponseRedirect
+    :raises: None
     """
     if request.method == "POST":
 
@@ -81,6 +111,12 @@ def comment_edit(request, slug, comment_id):
 def comment_delete(request, slug, comment_id):
     """
     view to delete comment
+    :param request: The HTTP request object.
+    :param slug: The slug of the post to which the comment belongs.
+    :param comment_id: The ID of the comment to be deleted.
+    :return: Redirects to the post detail page after deleting the comment.
+    :rtype: HttpResponseRedirect
+    :raises: None
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)

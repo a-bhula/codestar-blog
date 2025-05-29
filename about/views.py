@@ -6,7 +6,12 @@ from .forms import CollaborateForm
 
 def about_me(request):
     """
-    Renders the About page
+    Renders the most recent :model:'about.About' instance and handles
+    collaboration requests via a form submission.
+    :param request: The HTTP request object.
+    :return: Rendered HTML page with the about section and collaboration form.
+    :rtype: HttpResponse
+    :raises: None
     """
 
     if request.method == "POST":

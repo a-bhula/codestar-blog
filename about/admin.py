@@ -1,10 +1,16 @@
 from django.contrib import admin
-from .models import About, CollaborateRequest
 from django_summernote.admin import SummernoteModelAdmin
+from .models import About, CollaborateRequest
 
 
 @admin.register(About)
 class AboutAdmin(SummernoteModelAdmin):
+    """
+    Admin interface for managing the About page content.
+    Provides functionality to create, edit, and delete the About page,
+    as well as manage its content and metadata.
+    """
+    
     summernote_fields = ('content',)
 
 # Note: admin.ModelAdmin is the standard way of registering

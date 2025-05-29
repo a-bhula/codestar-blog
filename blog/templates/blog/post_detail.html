@@ -24,9 +24,9 @@
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
-                <p class="card-text">
+                <article class="card-text">
                     {{ post.content | safe }}
-                </p>
+                </article>
             </div>
         </div>
     </div>
@@ -67,8 +67,8 @@
             </p>
             {% endif %}
             {% if user.is_authenticated and comment.author == user %}
-            <button class="btn btn-delete" comment_id="{{ comment.id }}">Delete</button>
-            <button class="btn btn-edit" comment_id="{{ comment.id }}">Edit</button>
+            <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
+            <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
             {% endif %}
             </div>
             <!-- Our for loop ends here -->
